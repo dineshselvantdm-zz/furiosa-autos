@@ -6,6 +6,7 @@ var api = require('../lib/api');
 var models = require('../lib/utils/models.js');
 var services = require('../lib/utils/services.js');
 var reviews = require('../lib/utils/reviews.js');
+var handleError = require('../lib/utils/error-handler.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,6 +22,8 @@ router.get('/models', function(req, res, next) {
 	api.fetchModels().then(function(data){
 		var sortedModels = models.getSortedData(data,req);
 		res.render('models',{models:sortedModels});
+	}).catch(function(error){
+		handleError(error,res);
 	});
 	
 });
@@ -34,6 +37,8 @@ router.get('/services', function(req, res, next) {
 	api.fetchServices().then(function(data){
 		var filteredServices = services.getFilteredData(data,req);
 		res.render('services',{services:filteredServices});
+	}).catch(function(error){
+		handleError(error,res);
 	});
 });
 
@@ -52,6 +57,8 @@ router.get('/reviews', function(req, res, next) {
 			var searchedReviews = reviews.getSearchedData(data,req);
 			var searchKey = reviews.getSearchKey(req);
 			res.render('reviews', {reviews: searchedReviews,searchKey: searchKey});
+		}).catch(function(error){
+			handleError(error,res);
 		});
 });
 
