@@ -1,20 +1,26 @@
-html
+doctype html
+html(lang="en")
 	head
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(charset="utf-8")
+		meta(name="robots", content="INDEX,FOLLOW")
+		meta(name="description", content="furiosa autos")
+		meta(name="keywords", content="furiosa autos")
 		link(rel='stylesheet', href='stylesheets/bootstrap.css')
 		link(rel='stylesheet', href='stylesheets/style.css')
 		title Furiosas Auto Shop
 		block head
 	body
 		.container
-			.nav
-				ul.nav.nav-pills
-					li
+			.nav.container
+				ul.nav.nav-pills.row.text-center
+					li(class="col-lg-2 col-md-5 col-sm-12 col-xs-12")
 						a(href='/') Home
-					li
+					li(class="col-lg-2 col-md-5 col-sm-12 col-xs-12")
 						a(href='/services') Services
-					li
+					li(class="col-lg-2 col-md-5 col-sm-12 col-xs-12")
 						a(href='/models') Models
-					li
+					li(class="col-lg-2 col-md-5 col-sm-12 col-xs-12")
 						a(href='/reviews') Reviews
 				hr
 			block body

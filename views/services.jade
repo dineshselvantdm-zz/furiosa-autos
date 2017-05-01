@@ -2,12 +2,29 @@ extends _shared
 
 block body
 	.services
-		h2 Services we provide
+		div(class="container")
+			div(class="row")
+				h2 Services we provide
 
 		//- Implement filtering here
 
-		for service in services
-			h4= service.job
-			p= service.cost
-			p= service.type
+		div(class="container")
+			div(class="row")
+				div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12")
+					h3(class="inline-block") Filter By	
+					form(action="services", method="get",class="inline-block")
+						select(name="filter",onchange="this.form.submit()")
+							for option in services.optionsForHTML
+								if option.selected == true
+									option(value=option.value selected) #{option.text}
+								else
+									option(value=option.value) #{option.text} 
+						
+		div(class="container")
+			div(class="row")				
+				for service in services.data	
+					div(class="col-lg-3 col-md-4 col-sm-6 col-xs-12")
+						h4= service.job
+						p= service.cost
+						p= service.type
 

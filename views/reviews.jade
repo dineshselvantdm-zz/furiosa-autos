@@ -2,11 +2,25 @@ extends _shared
 
 block body
 	.reviews
-		h2 Customer reviews
+		div(class="container")
+			div(class="row")
+				h2 Corporate and Customer reviews
 
 		//- Implement search here
 
-		for review in reviews
-			blockquote
-				p= review.content
-				footer= review.source
+		form(action="reviews", method="get")
+			div(class="container")
+				div(class="row")
+					input(name="search", value=searchKey, type="text",class="col-lg-6 col-md-6 col-sm-9 col-xs-10 text-center")
+					input(type="submit", value="Search Reviews",class="col-lg-3 col-md-4 col-sm-6 col-xs-9 text-center")
+
+		if (reviews.length > 0)	
+			div(class="container")
+				div(class="row")
+					for review in reviews
+						div(class="col-lg-3 col-md-4 col-sm-6 col-xs-12")
+							blockquote
+								p= review.content
+								footer= review.source
+		else
+			div.text-center No Results Found		

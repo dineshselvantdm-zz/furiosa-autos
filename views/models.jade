@@ -2,9 +2,25 @@ extends _shared
 
 block body
 	.models
-		h2 Models we work on
+		div(class="container")
+			div(class="row")
+				h2 Models we work on
 
 		//- Implement sorting here
-
-		for model in models
-			h4= model
+		
+		div(class="container")
+			div(class="row")
+				div(class="col-lg-6 col-md-6 col-sm-12 col-xs-12")
+					h3(class="inline-block") Sort By
+					form(action="models", method="get",class="inline-block")
+						select(name="sort",onchange="this.form.submit()")
+							for option in models.optionsForHTML
+								if option.selected == true
+									option(value=option.value selected) #{option.text}
+								else
+									option(value=option.value) #{option.text} 				
+		div(class="container")
+			div(class="row")
+				for model in models.data
+					div(class="col-lg-3 col-md-4 col-sm-6 col-xs-12")
+						h4= model
